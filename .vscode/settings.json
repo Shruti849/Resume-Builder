@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "\t127.0.0.1",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "assingment",
+            "database": "mysql",
+            "username": "root",
+            "password": ""
+        }
+    ]
+}

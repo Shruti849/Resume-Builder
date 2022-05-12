@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="Width-device-width,initial-scale =1.0">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+
+</head>
+
+<body>
+
+  <!-- First Template -->
+  <center style="margin-top: 30px; margin-bottom:10spx"> <span style="font-size:20px; "><a id="download"
+        style="color:blue; cursor:pointer">Click Here</a> To Download Below Resume</span></center>
+
+  <div class="resume" id="template1">
+    <div class="resume_left">
+      <div class="resume_profile">
+        {% set photo = detail.record_workphoto %}
+        {% if not photo %}
+        <img src='{{ url_for("static", filename="/Images/photo.png" ) }}'>
+        {% endif %}
+
+        {% if photo %}
+
+        <img src='{{ photo }}'>
+        {% endif %}
+
+      </div>
+      <div class="resume_content">
+        <div class="resume_item resume_info">
+          <div class="title">
+            <p class="bold"> {{ detail.name }} </p>
+          </div>
+          <ul>
+            <li>
+              <div class="data">
+                <p class="p3" style="color: white"><i class="fa fa-phone"></i>&nbsp; {{ detail.phone_no }}</p><br />
+                <p class="p3" style="color: white"><i class="fa fa-envelope"></i>&nbsp; {{ detail.email_id }}</p><br />
+                <p class="p3" style="color: white"><i class="fa fa-home"></i>&nbsp;{{ detail.address }}</p>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="resume_item resume_skills">
+          <div class="title">
+            <p class="bold">skill's</p>
+          </div>
+          {% for skills in detail.technical_skills.split(',') %}
+          <ul>
+            <li>
+              <div class="data">
+                <p class="semi-bold" style="color: white">{{ skills }}</p>
+              </div>
+            </li>
+          </ul>
+          {% endfor %}
+        </div>
+        <div class="resume_item resume_social">
+          <div class="title">
+            <p class="bold">Languages</p>
+          </div>
+          {% for language in detail.lang_link.split(',') %}
+          <ul>
+            <li>
+              <div class="data">
+                <p class="p3" style="color: white; font-size: 16px">{{ language }}</p><br />
+              </div>
+            </li>
+          </ul>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="resume_right">
+      <div class="resume_item resume_about">
+        <div class="title">
+          <p class="bold">About us</p>
+        </div>
+        <p class="semi-bold">{{ detail.about }}</p>
+      </div>
+      <div class="resume_item resume_work">
+        <div class="title">
+          <p class="bold">Project</p>
+        </div>
+        {% for proj in detail.project.split(',') %}
+        <ul>
+          <li>
+            <div class="info">
+              <p class="semi-bold">{{ proj }} </p>
+              <br>
+            </div>
+          </li>
+        </ul>
+        {% endfor %}
+      </div>
+      <div class="resume_item resume_education">
+        <div class="title">
+          <p class="bold">Qualification</p>
+        </div>
+        <ul>
+          <li>
+            <div class="info">
+              <p class="semi-bold"></p>
+              <pre><b> {{ detail.school_10th }}</b>   ||    <b>SSC</b></pre>
+              <pre> {{ detail.year_10th }}</pre>
+              <pre>   <b>></b> {{ detail.percent_10th }} %</pre>
+
+
+            </div>
+          </li>
+          <li>
+            <div class="info">
+              <p class="semi-bold"></p>
+              <pre><b>{{ detail.college_12th }} </b>    ||    <b> HSC </b></pre>
+              <pre>{{ detail.year_12th }}</pre>
+              <pre>   <b>></b>{{ detail.percent_12th }} %</pre>
+            </div>
+          </li>
+          <li>
+            <div class="info">
+              <p class="semi-bold"></p>
+              <pre><b> {{ detail.graduation_university_name}}</b>   ||   <b> {{ detail.graduation_cource_name }}</b></pre>
+              <pre>{{ detail.graduation_year }}</pre>
+              <pre>   <b>></b>{{ detail.graduation_percent }} %</pre>
+
+            </div>
+          </li>
+          <li>
+            <div class="info">
+              <p class="semi-bold"></p>
+              <pre><b> {{ detail.post_graduation_university_name}}</b>    ||    <b> {{ detail.post_graduation_cource_name }}</b></pre>
+              <pre>{{ detail.post_graduation_year }}</pre>
+              <pre>   <b>></b> {{ detail.post_graduation_percent }} %</pre>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Second Template -->
+
+  <center style="margin-top: 30px;margin-bottom: 10px"> <span style="font-size:20px;"><a id="download1"
+        style="color:blue; cursor:pointer">Click Here</a> To Download Below Resume</span></center>
+  <div class="main" id="template2">
+    <div class="top-section">
+      <p class="p1">{{ detail.name }} </p>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-div-4">
+      <div class="content-box" style="padding-left: 40px;">
+        <p class="head">Contact</p><br />
+
+        <p class="p3">
+          <i class="fa fa-phone"></i>
+          &nbsp;{{ detail.phone_no }}
+        </p><br />
+        <p class="p3"><i class="fa fa-envelope"></i> {{ detail.email_id }}</p><br />
+        <p class="p3"><i class="fa fa-home"></i>&nbsp;{{ detail.address }}</p><br />
+
+        <br />
+
+        <p class="head">My Skills</p><br />
+        {% for skills in detail.technical_skills.split(',') %}
+        <ul class="skills">
+          <li><span>{{skills}}</span></li>
+        </ul>
+        {% endfor %}
+        <br />
+
+        <p class="head"> Languages</p><br />
+        {% for language in detail.lang_link.split(',') %}
+        <p class="p3">{{language}}</p><br />
+        {% endfor %}
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="col-div-8">
+      <div class="content-box">
+        <p class="head">About</p>
+        <p class="p3" style="font-size:14px;">
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{{ detail.about }}
+        </p>
+        <br><br>
+        <p class="head">Education</p><br />
+        <p>
+        <h3><b>SSC</b></h3>
+        </p>
+        <p class="p-4"></p>
+        <pre class="p-4"><b>{{ detail.school_10th }} ({{ detail.year_10th }})</b></pre>
+        <pre class="p-4"><b>></b>{{ detail.percent_10th }}   %</pre>
+
+
+        <br />
+        <p>
+        <h3><b>HSC</b></h3>
+        </p>
+        <p class="p-4"> </p>
+        <pre class="p-4"><b>{{ detail.college_12th }} ({{ detail.year_12th }})</b></pre>
+
+        <pre class="p-4"><b>></b> {{ detail.percent_12th }}%</pre>
+        <br />
+
+        <p>
+        <h3><b>Graduation</b></h3>
+        </p>
+        <p class="p-4"></p>
+        <pre class="p-4"><b> {{ detail.graduation_cource_name }} ({{ detail.graduation_year }}) </b></pre>
+        <pre class="p-4"> {{ detail.graduation_university_name}} </pre>
+        <pre class="p-4"> <b>></b> {{ detail.graduation_percent }} %</pre>
+
+        <br />
+
+        <p><b>&nbsp;&nbsp;Post Graduation</b></p>
+        <p class="p-4"> </p>
+        <pre class="p-4"><b> {{ detail.post_graduation_cource_name}} ({{ detail.post_graduation_year }})</b></pre>
+        <pre class="p-4"> {{ detail.post_graduation_university_name}} </pre>
+        <pre class="p-4"> <b>></b> {{ detail.post_graduation_percent }} %</pre>
+        <br><br>
+
+        <p class="head">Projects</p><br />
+        {% for proj in detail.project.split(',') %}
+        <p class="skills">&nbsp;<span class="p-4"><b>></b> {{ proj }}</span></p><br>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+<!-- Third Template -->
+
+  <center style="margin-top: 80px;margin-bottom: 10px"> <span style="font-size:20px; "><a id="download2"
+        style="color:blue; cursor:pointer">Click Here</a> To Download Below Resume</span></center>
+  <div class="resume-box" id="template3">
+    <div class="left-section">
+      <!-- <div class="profile">
+        {% set photo = detail.record_workphoto %}
+        {% if not photo %}
+        <img src='{{ url_for("static", filename="/Images/photo.png" ) }}'>
+        {% endif %}
+
+        {% if photo %}
+
+        <img src='{{ photo }}'class="profile" >
+        {% endif %}
+
+      </div> -->
+      <h2 class="name">{{ detail.name }} </h2>
+      <div class="info">
+        <br><br>
+        <p class="heading">Info</p>
+        <p class="p11"><span class="span1"></span>Address
+        <pre class="details">      > {{ detail.address }}</pre>
+        </p><br>
+        <p class="p11"><span class="span1"></span>Phone
+        <pre class="details">      > {{ detail.phone_no }}</pre>
+        </p>
+        <p class="p11"><span class="span1"></span>Email
+        <pre class="details">      > {{ detail.email_id }}</pre>
+        </p>
+
+      </div>
+      <br><br>
+      <div class="info">
+        <p class="heading">Languages</p>
+
+        {% for language in detail.lang_link.split(',') %}
+        <ul>
+          <li>
+            <p class="p11" style="color: white; font-size: 16px">{{ language }}</p><br />
+          </li>
+        </ul>
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+    <div class="right-section">
+      <div class="right-heading">
+
+        <p class="p22">About Me</p>
+
+      </div>
+      <p class="p33">{{ detail.about }}</p>
+
+      <div class="clearfix"></div>
+      <br><br>
+      <div class="right-heading">
+        <p class="p22">Qualification</p>
+      </div>
+      <div class="clearfix"></div>
+      <div class="lr-box">
+        <div class="left">
+          <pre class="p44"><b>  {{ detail.school_10th }}</b>   ||    <b>SSC</b></pre>
+          <pre class="p55">  {{ detail.year_10th }}</pre>
+          <pre class="p55">    <b>></b>  {{ detail.percent_10th }} %</pre>
+
+        </div>
+
+
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="lr-box">
+        <div class="left">
+
+          <pre class="p44"><b>  {{ detail.college_12th }} </b>    ||    <b> HSC </b></pre>
+          <pre class="p55">  {{ detail.year_12th }}</pre>
+          <pre class="p55">   <b>></b>  {{ detail.percent_12th }} %</pre>
+        </div>
+
+
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="lr-box">
+        <div class="left">
+          <pre
+            class="p44"><b>  {{ detail.graduation_university_name}}</b>   ||   <b> {{ detail.graduation_cource_name }}</b></pre>
+          <pre class="p55">  {{ detail.graduation_year }}</pre>
+          <pre class="p55">    <b>></b>  {{ detail.graduation_percent }} %</pre>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="lr-box">
+        <div class="left">
+          <pre
+            class="p44"><b>  {{ detail.post_graduation_university_name}}</b>    ||    <b> {{ detail.post_graduation_cource_name }}</b></pre>
+          <pre class="p55">  {{ detail.post_graduation_year }}</pre>
+          <pre class="p55">   <b>></b>  {{ detail.post_graduation_percent }} %</pre>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+
+
+      <br>
+      <div class="right-heading">
+        <p class="p22">PROJECTS</p>
+        <br>
+        {% for proj in detail.project.split(',') %}
+        <pre class="p44">  {{ proj }} </pre>
+
+        {% endfor %}
+
+      </div>
+
+      <br><br>
+      <div class="left-heading">
+        <p class="p22">SkillS</p>
+      </div>
+
+      {% for skills in detail.technical_skills.split(',') %}
+      <ul>
+        <li>
+          <div class="s-box">
+            <pre class="p-6"><b>  {{ skills }}</b></pre>
+          </div>
+        </li>
+      </ul>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+
+<!-- Firth Template -->
+
+  <center style="margin-top: 80px;margin-bottom: 0px"> <span style="font-size:20px; "><a id="download3"
+        style="color:blue; cursor:pointer;">Click Here</a> To Download Below Resume</span></center>
+  <div class="box-outer" id="template4">
+    <div class="resume-box">
+      <div class="box-1">
+        <div class="profile">
+          {% set photo = detail.record_workphoto %}
+          {% if not photo %}
+          <img src='{{ url_for("static", filename="/Images/photo.png" ) }}'>
+          {% endif %}
+
+          {% if photo %}
+
+          <img src='{{ photo }}' class="profile">
+          {% endif %}
+        </div>
+        <div class="content">
+          <h1>About me</h1><br>
+          <p>{{ detail.about }}</p>
+          <br>
+          <br>
+          <h1>SkillS</h1>
+          <br>
+          {% for skills in detail.technical_skills.split(',') %}
+          <ul>
+            <li>
+              <p>{{skills}}</p>
+            </li>
+          </ul>
+          {% endfor %}
+          <br>
+          <br>
+
+          <h1> Languages</h1><br>
+          {% for language in detail.lang_link.split(',') %}
+          <p>{{language}}</p><br />
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+      <div class="box-2">
+
+        <div class="intro">
+          <h1>{{ detail.name }} </h1>
+          <hr class="hr" />
+          <br>
+          <p class="intro-p">{{ detail.address }}</p>
+          <p>phone {{ detail.phone_no }}</p>
+          <p>email : {{ detail.email_id }}</p>
+        </div>
+        <br>
+        <hr>
+        <div class="content-2">
+          <h1 class="head">PROJECTS</h1>
+
+          <!-- <p class="para-1">PROJECTS</p> -->
+
+          {% for proj in detail.project.split(',') %}
+          <pre class="para-1">  {{ proj }} </pre>
+
+          {% endfor %}
+
+        </div>
+      <div class="content-2">
+        <h1 class="head">EDUCATION</h1>
+
+        <pre class="para-1">   {{ detail.school_10th }}     </pre>
+        <pre class="para-1">    SSC ( {{ detail.year_10th }} )</pre>
+        <pre class="para-1">       > {{ detail.percent_10th }} %</pre>
+        <br>
+
+        <pre class="para-1">   {{ detail.college_12th }}       </pre>
+        <pre class="para-1">    HSC ( {{ detail.year_12th }} )</pre>
+        <pre class="para-1">      > {{ detail.percent_12th }} %</pre>
+        <br>
+        <pre class="para-1">   {{ detail.graduation_university_name}}  </pre>
+        <pre class="para-1">     {{ detail.graduation_cource_name }}  ( {{ detail.graduation_year }} )</pre>
+        <pre class="para-1">        >  {{ detail.graduation_percent }} %</pre>
+        <br>
+        <pre class="para-1">   {{ detail.post_graduation_university_name}}    </pre>
+        <pre class="para-1">      {{ detail.post_graduation_cource_name }} ( {{ detail.post_graduation_year }} )</pre>
+        <pre class="para-1">         >  {{ detail.post_graduation_percent }} %</pre>
+      
+      </div>
+    </div>
+  </div>
+
+
+
+  
+  </div>
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="/static/javascript/cv.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+</body>
+
+</html>
+
